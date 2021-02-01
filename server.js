@@ -20,7 +20,34 @@ app.post("/api/scrum", async (req, res) => {
   };
     await knex('scrum').insert(newMember);
     const added = await knex('scrum').select().where('name', req.body.name);
-    res.status(200).send(added);
+    res.status(200).send(added[0]);
+  } catch (error) {
+    res.sendStatus(400);
+  }
+});
+
+app.patch("/api/scrum/:id", async (req, res) => {
+  const empId = parseInt(req.params.id);
+  const updateObj = {};
+  
+  try {
+    for (const key in req.body) {
+      updateObj[key] = req.body[key];
+    }
+    await knex('scrum').where({emp_id: empId}).update(updateObj);
+    const updated = await knex('scrum').select().where({emp_id: empId});
+    res.status(200).send(updated[0]);
+  } catch (error) {
+    res.sendStatus(400);
+  }
+});
+
+app.delete("/api/scrum/:id", async (req, res) => {
+  const empId = parseInt(req.params.id);
+  try {
+    const deleted = await knex('scrum').select().where({emp_id: empId});
+    await knex('scrum').where({emp_id: empId}).del();
+    res.status(200).send(deleted[0]);
   } catch (error) {
     res.sendStatus(400);
   }
