@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/tNahoko/api-solo-project/issues"
   },
-  "homepage": "https://github.com/tNahoko/api-solo-project#readme"
+  "homepage": "https://github.com/tNahoko/api-solo-project#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "knex": "^0.21.17",
+    "pg": "^8.5.1"
+  }
 }
