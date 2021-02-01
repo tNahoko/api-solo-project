@@ -1,0 +1,19 @@
+{
+  "name": "api-solo-project",
+  "version": "1.0.0",
+  "description": "20210201 Code Chrysalis Immersive Week 5 API project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tNahoko/api-solo-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tNahoko/api-solo-project/issues"
+  },
+  "homepage": "https://github.com/tNahoko/api-solo-project#readme"
+}
