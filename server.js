@@ -30,15 +30,15 @@ app.post("/api/scrum", async (req, res) => {
 
 app.patch("/api/scrum/:id", async (req, res) => {
   const empId = parseInt(req.params.id);
-  // const updateObj = {};
+  const updateObj = {};
+
   try {
-    // for (const key in req.body) {
-    //   updateObj[key] = req.body[key];
-    // }
-    await knex('scrum').where({emp_id: empId}).update(req.body);
-    const updated = await knex('scrum').select().where({emp_id: empId});
-    res.send(updated[0]);
-    return;
+    for (const key in req.body) {
+      updateObj[key] = req.body[key];
+      await knex('scrum').where({emp_id: empId}).update(updateObj);
+    }
+    // const updated = await knex('scrum').select().where({emp_id: empId});
+    res.sendStatus(200);
   } catch (error) {
     res.sendStatus(400);
   }
