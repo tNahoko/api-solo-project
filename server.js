@@ -1,7 +1,9 @@
 const express = require("express");
-const knex = require("./knex")
+const knex = require("./knex");
 
 const app = express();
+
+app.use(express.static("public"));
 
 app.use(express.json());
 
@@ -28,15 +30,15 @@ app.post("/api/scrum", async (req, res) => {
 
 app.patch("/api/scrum/:id", async (req, res) => {
   const empId = parseInt(req.params.id);
-  const updateObj = {};
-  
+  // const updateObj = {};
   try {
-    for (const key in req.body) {
-      updateObj[key] = req.body[key];
-    }
-    await knex('scrum').where({emp_id: empId}).update(updateObj);
+    // for (const key in req.body) {
+    //   updateObj[key] = req.body[key];
+    // }
+    await knex('scrum').where({emp_id: empId}).update(req.body);
     const updated = await knex('scrum').select().where({emp_id: empId});
-    res.status(200).send(updated[0]);
+    res.send(updated[0]);
+    return;
   } catch (error) {
     res.sendStatus(400);
   }
